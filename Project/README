@@ -1,0 +1,18 @@
+Prerequisite:
+
+All .txt files should be empty before running the program
+File mygraph.graphic should have {'Graphics',[{'Text',"",{0,0}},{'AbsoluteThickness',3} in it
+Ermdrawer has to be installed
+In mdrawer_board, new() method contains path to mygraph.graphic
+new(ParentObj) ->
+    {ok,Content}=file:consult("/home/nevena/Desktop/Project/mygraph.graphic"),
+    R = wx_object:start_link(?MODULE, [ParentObj, self()], []),
+    set_board_data(R, lists:last(Content)),
+    R.
+
+
+Compile 
+c(cm).
+c(sp).
+Run sp:start().
+

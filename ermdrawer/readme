@@ -1,0 +1,71 @@
+=Introduction=
+
+Draw 2D graphics in Erlang/wx using Mathematica-like graphic primitives.
+
+=Install=
+
+  * Extract the package to somewhere in the lib path of Erlang/OTP, e.g.
+
+    If Erlang/OTP is installed in C:\Program Files\erl5.7.2, then
+    extract the files in this package to C:\Program Files\erl5.7.2\lib\ermdrawer.
+
+  * In Erlang:
+
+{{{
+    1> cd("../lib\ermdrawer").
+    ...
+    ok
+    2> make:all().
+    ok
+}}} 
+
+=Usage=
+
+  * In Erlang:
+
+{{{
+    1> cd("../lib\ermdrawer").
+    ...
+    ok
+    3> mdrawer:start().
+}}} 
+
+  * Use File -> Open Graphics to open a file
+
+  * Use File -> Print to print the graphic into a .pdf for free zooming in and out.
+
+=License=
+  
+  MIT license.
+
+=Notes=
+
+  * "mdrawer" is the original name, but unfortunately it is alread used by a project on SourceForge, so it is renamed to "ermdrawer"
+
+  * ermdrawer is built using same structure of "sudoku" example in Erlang/OTP R13B01, and some codes are got from it directly,
+     so special thanks to Dan Gudmundsson <dgud@erix.ericsson.se>.
+
+  * Graphic primitives:
+
+    * Ref to td.graphic in the package.
+
+    * Graphic file ={'Graphics', `[primitives()`], `[options()`]}.
+
+    * primitives() ={'Text', ...} |
+                    {'AbsoluteThickness', ...} |
+                    {'Line', ...} |
+                    {'Text', ...} |
+                    {'RGBColor', ...} |
+                    `[primitives()`]
+
+        As you see, these primitives are transformations of [http://reference.wolfram.com/mathematica/guide/SymbolicGraphicsLanguage.html Mathematica Graphics Primitives], of which only a few are implemented, but that's enough
+for me now.
+
+        It will be easy to add new ones, ref to mdrawer_board.erl. 
+
+        When there is a new `[primitives()`] embedded in a `[primitives()`], Background color/pens/brushes are pushed one level which will be restored after then embedded `[primitives()`] is processed. This feature is not implemented.
+
+    * options() =   {mapping, {{x-pos, y-pos}, {X scale, Y scale}}}
+
+        {x-pos, y-pos} of the graphic is mapped to the top-left corner of the screen.
+
